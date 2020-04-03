@@ -9,11 +9,7 @@ import com.google.gson.Gson;
 
 import model.data_structures.Comparendo;
 import model.data_structures.Comparendo.KeyComparendo;
-import model.data_structures.HashSeparateChaining;
-import model.data_structures.LinkedList;
-import model.data_structures.MaxHeapPQ;
-import model.data_structures.Queue;
-import model.data_structures.Stack;
+
 import model.logic.Modelo;
 
 import java.io.BufferedReader;
