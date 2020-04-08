@@ -10,6 +10,7 @@ import com.google.gson.Gson;
 
 import controller.Controller;
 import model.data_structures.Comparendo;
+import model.data_structures.Node;
 import model.data_structures.RedBlackTree;
 import model.data_structures.Comparendo;
 
@@ -23,6 +24,8 @@ public class Modelo {
 		tiempoCarga=0;
 		tiempoInicio=0;
 		tiempoFin=0;
+		valMax=0;
+		valMin=0;
 	}
 	
 	
@@ -40,6 +43,9 @@ public class Modelo {
 		Scanner sc;
 		//CREAR ATRIBUTO DE LA ESTRUCTURA
 		static RedBlackTree arbol;
+		
+		static int valMin;
+		static int valMax;
 
 
 		//------------------------CLASES INTERNAS-----------------------------------------------
@@ -80,7 +86,7 @@ public class Modelo {
 		@SuppressWarnings("unchecked")
 		public static void cargar(){
 			
-			int mayorID = 0;
+	
 			String fecha = "";
 			String infraccion ="";
 			String clase_vehiculo = "";
@@ -93,13 +99,16 @@ public class Modelo {
 
 			try {
 				FileInputStream inputStream;
-				inputStream = new FileInputStream(ARCHIVO_MEDIANO);
+				inputStream = new FileInputStream(ARCHIVO_PEQUENO);
 				InputStreamReader inputStreamreader = new InputStreamReader(inputStream);
 				BufferedReader bufferedReader = new BufferedReader(inputStreamreader);
 
 				Json coleccionComparendos =  new Gson().fromJson(bufferedReader, Json.class);
 
 				tiempoInicio = System.currentTimeMillis();
+				
+				valMin = coleccionComparendos.features[0].properties.OBJECTID;
+				
 				for (int i=0; i<coleccionComparendos.features.length;i++){
 					
 					//CARGAR EN LA ESTRUCTURA
@@ -118,27 +127,39 @@ public class Modelo {
 					arbol.put(comp.getKey(), comp);
 					
 					
-
+	
 
 					//coger el mayor de una vez y cogerme la info
-					mayorID=coleccionComparendos.features[i].properties.OBJECTID;
-					
-					if (coleccionComparendos.features[i].properties.OBJECTID>mayorID){
-						mayorID = coleccionComparendos.features[i].properties.OBJECTID;
+					int temp = coleccionComparendos.features[i].properties.OBJECTID;;
+					if (temp > valMax){
+						valMax = temp;
 					}
 					
+					/*
 					fecha = coleccionComparendos.features[i].properties.FECHA_HORA;
 					infraccion = coleccionComparendos.features[i].properties.INFRACCION;
 					clase_vehiculo = coleccionComparendos.features[i].properties.CLASE_VEHICULO;
 					tipo_servicio = coleccionComparendos.features[i].properties.TIPO_SERVICIO;
 					localidad = coleccionComparendos.features[i].properties.LOCALIDAD;
+					*/
+					
+					
+					//Coger el menor ID
+					int temp2 = coleccionComparendos.features[i].properties.OBJECTID;
+					if (temp2<valMin){
+						valMin = temp2;
+					}
+					
+				
 				}
 				
+
 				
 				
 				tiempoFin = System.currentTimeMillis();
 				tiempoCarga = (tiempoFin-tiempoInicio)/1000;
 				
+			
 			}catch (Exception e){
 				//System.out.println("No se encontró el archivo de datos");
 				e.getStackTrace();
@@ -146,12 +167,7 @@ public class Modelo {
 			
 			//OUTPUT en consola con información de la carga
 			System.out.println("");
-			
-			//NO OLVIDAR PONER ESTO
-			//System.out.println("Total comparendos en el archivo: "+ GETSIZE.getSize());
-
-			System.out.println("El comparendo con el mayor OBJECTID encontrado es: ");
-			System.out.println( mayorID+ " " + fecha +" " + infraccion + " " + clase_vehiculo + " " + tipo_servicio + " " + localidad);
+			req1();
 
 		}
 	
@@ -163,14 +179,21 @@ public class Modelo {
 	//-----PARTE A----- 
 	
 	// 1A - Obtener los M comparendos con mayor gravedad
-	public void req1A(int m){
-			System.out.println("el tamanio es: " +arbol.size());
-	//
-		
+	public static void req1(){
+
+
+			System.out.println("El tamanio es: " +arbol.size());
+			System.out.println("El valor MINIMO de OBJECT ID es: " + valMin);
+			System.out.println("El valor MAXIMO de OBJECT ID es: " + valMax);
+	}
+	
+	public void req2(){
 		
 	}
 	
-	
+	public void req3(){
+		
+	}
 	
 	
 	
