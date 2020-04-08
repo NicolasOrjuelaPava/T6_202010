@@ -8,8 +8,6 @@ import java.io.LineNumberInputStream;
 import com.google.gson.Gson;
 
 import model.data_structures.Comparendo;
-import model.data_structures.Comparendo.KeyComparendo;
-
 import model.logic.Modelo;
 
 import java.io.BufferedReader;

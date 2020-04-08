@@ -10,6 +10,7 @@ import com.google.gson.Gson;
 
 import controller.Controller;
 import model.data_structures.Comparendo;
+import model.data_structures.RedBlackTree;
 import model.data_structures.Comparendo;
 
 
@@ -38,7 +39,8 @@ public class Modelo {
 		public static double tiempoFin;
 		Scanner sc;
 		//CREAR ATRIBUTO DE LA ESTRUCTURA
-		
+		static RedBlackTree arbol;
+
 
 		//------------------------CLASES INTERNAS-----------------------------------------------
 		//modelamiento del JSon
@@ -86,7 +88,7 @@ public class Modelo {
 			String localidad ="";
 			
 			//INICIALIZAR LA ESTRUCTURA
-			
+			arbol = new RedBlackTree();
 
 
 			try {
@@ -101,9 +103,7 @@ public class Modelo {
 				for (int i=0; i<coleccionComparendos.features.length;i++){
 					
 					//CARGAR EN LA ESTRUCTURA
-					
-					/*
-					lista.addFirst(new Comparendo(
+					Comparendo comp = new Comparendo(
 							coleccionComparendos.features[i].properties.OBJECTID, 
 		        			coleccionComparendos.features[i].properties.FECHA_HORA, 
 		        			coleccionComparendos.features[i].properties.MEDIO_DETECCION,
@@ -114,9 +114,8 @@ public class Modelo {
 		        			coleccionComparendos.features[i].properties.LOCALIDAD, 
 		        			coleccionComparendos.features[i].properties.MUNICIPIO, 
 		        			coleccionComparendos.features[i].geometry.coordinates[0], 
-		        			coleccionComparendos.features[i].geometry.coordinates[1])) ;
-					
-					*/
+		        			coleccionComparendos.features[i].geometry.coordinates[1]) ;
+					arbol.put(comp.getKey(), comp);
 					
 					
 
@@ -165,7 +164,7 @@ public class Modelo {
 	
 	// 1A - Obtener los M comparendos con mayor gravedad
 	public void req1A(int m){
-			
+			System.out.println("el tamanio es: " +arbol.size());
 	//
 		
 		

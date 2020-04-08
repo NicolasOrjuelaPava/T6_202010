@@ -12,7 +12,7 @@ public class Comparendo implements Comparable<Comparendo> {
 	public String LOCALIDAD;
 	public String MUNICIPIO;
 	
-	public KeyComparendo key;
+	public keyComparendo key;
 	
 	public double longitud;
 	public double latitud;
@@ -31,7 +31,7 @@ public class Comparendo implements Comparable<Comparendo> {
 		this.longitud = longitud;
 		this.latitud = latitud;
 		
-		this.key = new KeyComparendo(fechaHora, medioDeteccion, localidad);
+		this.key = new keyComparendo(OBJECTID, CLASE_VEHICULO);
 	}
 	
 	public String toString(){
@@ -50,28 +50,42 @@ public class Comparendo implements Comparable<Comparendo> {
 		}
 	}
 	
+	public keyComparendo getKey(){
+		return key;
+	}
+	
+	
+	
 
 	
-	public class KeyComparendo{
-		String fecha_hora, medio_deteccion, local;
+	//clase interna
+	class keyComparendo implements Comparable<keyComparendo>{
+
+		private int id;
+		private String claseVehiculo;
 		
-		public KeyComparendo(String fh, String md, String l){
+		public keyComparendo(int pId, String pClaseVehiculo){
+			id = pId;
+			claseVehiculo = pClaseVehiculo;
+		}
+		
+		public int getId(){
+			return id;
+		}
+		
+		public int compareTo(keyComparendo arg0) {
 			
-			fecha_hora = fh;
-			medio_deteccion = md;
-			local = l;
-		}
-		
-		
-		public int hashCOde(){
-			String s = fecha_hora + medio_deteccion + local;
-			int g = 31;
-			int hash = 0;
-			for (int i=0; i<s.length();i++){
-				hash = g*hash + s.charAt(i);
+			int resp = 0;
+			
+			if (id>arg0.getId()){
+				resp = 1;
+			}else if (id<arg0.getId()){
+				resp=-1;
 			}
-			return hash;
+			return resp;
 		}
+	
+		
 	}
 	
 
