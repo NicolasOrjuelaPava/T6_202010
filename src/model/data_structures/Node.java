@@ -4,70 +4,78 @@ public class Node<K extends Comparable <K> ,V> {
 
 	
 	//ATRIBUTOS
-	private K llave;
-	private Valor<V> valor;
-	private Node<K,V> izq, dere;
+	private K key;
+	private Valor<V> value;
+	private int size;
 	private boolean color;
-	private int tamanio;
+	private Node<K,V> left, right;
+
 	
 	//CONSTRUCTOR
-	public Node(K pK, V pV, boolean pColor){
-		llave = pK;
-		valor = new Valor<V>(pV);
-		color = pColor;
-		izq=null;
-		dere=null;
+	public Node(K k, V v, boolean c){
+		key = k;
+		color = c;
+		value = new Valor<V>(v);
+		left=null;
+		right=null;
 	}
+	
 	
 	//MÉTODOS
 	//Getters and Setters
-	public K darLlave(){
-		return llave;
+	public K getKey(){
+		return key;
 	}
 	
-	public Valor<V> darValor(){
-		return valor;
+	public Valor<V> getValue(){
+		return value;
 	}
 	
-	public Node<K,V> darIzquierda(){
-		return izq;
+	public Node<K,V> getRight(){
+		return right;
 	}
 	
-	public Node<K,V> darDerecha(){
-		return dere;
+	public Node<K,V> getLeft(){
+		return left;
 	}
 	
-	public boolean darColor(){
+	public int getSize(){
+		return size;
+	}
+	
+
+	
+	public boolean getColor(){
 		return color;
 	}
 	
-	public int darTamano(){
-		return tamanio;
+
+	
+	public void setLeft(Node<K,V> pLeft){
+		left = pLeft;
 	}
 	
-	public void cambiarIzquierda(Node<K,V> pIzq){
-		izq = pIzq;
-	}
-	
-	public void cambiarDerecha(Node<K,V> pDere){
-		dere= pDere;
-	}
-	
-	public void cambiarColor(boolean pColor){
+	public void setColor(boolean pColor){
 		color = pColor;
 	}
 	
-	//métodos adicionales
-	public void agregarValor(V pV){
-		Valor<V> anteriorPrimero = valor;
-		valor = new Valor<V>(pV);
-		valor.cambiarSiguiente(anteriorPrimero);
-		tamanio++;
+	
+	public void setRight(Node<K,V> pRight){
+		right= pRight;
 	}
 	
-	public void remplazarValor(V pV){
-		valor = new Valor<V>(pV);
-		tamanio = 1;
+
+	//métodos adicionales
+	public void addValue(V pValue){
+		value = new Valor<V>(pValue);
+		Valor<V> tmp = value;
+		value.setNext(tmp);
+		size++;
+	}
+	
+	public void changeValue(V pValue){
+		value = new Valor<V>(pValue);
+		size = 1;
 	}
 	
 }

@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Scanner;
 
 import com.google.gson.Gson;
@@ -12,6 +13,7 @@ import controller.Controller;
 import model.data_structures.Comparendo;
 import model.data_structures.Node;
 import model.data_structures.RedBlackTree;
+import model.data_structures.keyComparendo;
 import model.data_structures.Comparendo;
 
 
@@ -178,38 +180,50 @@ public class Modelo {
 
 	//-----PARTE A----- 
 	
-	// 1A - Obtener los M comparendos con mayor gravedad
+	// 1 carga
 	public static void req1(){
 
-
+			//System.out.println(arbol.height());
 			System.out.println("El tamanio es: " +arbol.size());
 			System.out.println("El valor MINIMO de OBJECT ID es: " + valMin);
 			System.out.println("El valor MAXIMO de OBJECT ID es: " + valMax);
 	}
 	
-	public void req2(){
+	//Funciona perfecto
+	public void req2(int idBuscado){
+		keyComparendo k = new keyComparendo(idBuscado);
 		
+		try{
+		if (arbol.get(k).toString() == null){
+			System.out.println("No existe un comparendo con ese OBJECTID");
+		}else{
+			System.out.println(arbol.get(k).toString());
+			System.out.println("");
+			}
+		}catch (Exception e){
+			System.out.println("");
+			System.out.println("No existe un comparendo con ese OBJECTID");
+			System.out.println("");
+		}
 	}
 	
-	public void req3(){
+	//Consultar los comparendos con un id en un rango específico
+	public void req3(int id_inferior, int id_superior){
+		keyComparendo k_inf = new keyComparendo(id_inferior);
+		keyComparendo k_sup = new keyComparendo(id_superior);
+		
+		/*
+		while(arbol.valuesInRange(k_inf, k_sup).hasNext()){
+			System.out.print(arbol.valuesInRange(k_inf, k_sup).next().toString());
+		}
+		*/
+		while(arbol.keysInRange(k_inf, k_sup).hasNext()){
+			System.out.print(arbol.keysInRange(k_inf, k_sup).next().toString());
+		}
+		
+		
 		
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	

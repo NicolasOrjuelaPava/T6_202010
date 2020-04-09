@@ -31,7 +31,7 @@ public class Comparendo implements Comparable<Comparendo> {
 		this.longitud = longitud;
 		this.latitud = latitud;
 		
-		this.key = new keyComparendo(OBJECTID, CLASE_VEHICULO);
+		this.key = new keyComparendo(OBJECTID);
 	}
 	
 	public String toString(){
@@ -50,6 +50,8 @@ public class Comparendo implements Comparable<Comparendo> {
 		}
 	}
 	
+	
+	//ojo, devuelve la llave
 	public keyComparendo getKey(){
 		return key;
 	}
@@ -58,35 +60,7 @@ public class Comparendo implements Comparable<Comparendo> {
 	
 
 	
-	//clase interna
-	class keyComparendo implements Comparable<keyComparendo>{
 
-		private int id;
-		private String claseVehiculo;
-		
-		public keyComparendo(int pId, String pClaseVehiculo){
-			id = pId;
-			claseVehiculo = pClaseVehiculo;
-		}
-		
-		public int getId(){
-			return id;
-		}
-		
-		public int compareTo(keyComparendo arg0) {
-			
-			int resp = 0;
-			
-			if (id>arg0.getId()){
-				resp = 1;
-			}else if (id<arg0.getId()){
-				resp=-1;
-			}
-			return resp;
-		}
-	
-		
-	}
 	
 
 

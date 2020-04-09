@@ -42,18 +42,31 @@ public class Controller {
 	}
 	
 	//----PARTE A----
-	public  void req1A(){
-		System.out.println("Ingrese el número de comparendos que desea obtener:");
-		int numero = Integer.parseInt(sc.nextLine());
-		modelo.req1A(numero);
+	public  void req1(){
+
+		modelo.req1();
 		
 	}
 	
 
+	public  void req2(){
+		
+		System.out.println("Ingrese la el OBJECTID del comparendo que desea consultar: ");
+		int idBuscado = sc.nextInt();
+		modelo.req2(idBuscado);
+		
+	}
 	
 	
-	
-	
+	public  void req3(){
+
+		System.out.println("Ingrese el OBJECTID INFERIOR: ");
+		int id_inferior = sc.nextInt();
+		System.out.println("Ingrese el OBJECTID SUPERIOR: ");
+		int id_superior = sc.nextInt();
+		modelo.req3(id_inferior, id_superior);
+		
+	}
 	
 	
 	

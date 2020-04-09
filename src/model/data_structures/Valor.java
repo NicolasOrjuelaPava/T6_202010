@@ -1,25 +1,27 @@
 package model.data_structures;
 
 public class Valor<K> {
-
-	private K dato;
-	private Valor<K> datoSiguiente;
+	//Atributos
+	private K data;
+	private Valor<K> next;
 	
-	public Valor(K pDato){
-		dato = pDato;
-		datoSiguiente = null;
+	//Constructor
+	public Valor(K pData){
+		data = pData;
+		next = null;
 	}
 	
-	public K darDato(){
-		return dato;
+	//Métodos, getters y setters
+	public K getData(){
+		return data;
 	}
 	
-	public Valor<K> darDatoSiguiente(){
-		return datoSiguiente;
+	public Valor<K> getNext(){
+		return next;
 	}
 	
-	public void cambiarSiguiente(Valor<K> pValor){
-		datoSiguiente = pValor;
+	public void setNext(Valor<K> pValue){
+		next = pValue;
 	}
 	
 }
