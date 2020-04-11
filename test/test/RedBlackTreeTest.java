@@ -31,13 +31,6 @@ public class RedBlackTreeTest {
 		assertEquals(500,arbol.size());
 	}
 
-	//Pruebo el isEmpty
-	@Test
-	public void testEmpty(){
-		setUp1();
-		assertFalse(arbol.isEmpty());
-	}
-
 	//Pruebo el contains
 	@Test
 	public void testContains(){
@@ -46,6 +39,12 @@ public class RedBlackTreeTest {
 		assertFalse(arbol.contains(501));	
 		}
 	
+	//Pruebo el isEmpty
+	@Test
+	public void testEmpty(){
+		setUp1();
+		assertFalse(arbol.isEmpty());
+	}
 
 	
 	//Pruebo el put
@@ -66,6 +65,14 @@ public class RedBlackTreeTest {
 		assertEquals(10,arbol.get(value));
 	}
 	
+	//Pruebo el max
+	@Test
+	public void testMax() {
+		setUp1();
+		assertEquals(499,arbol.max());
+	}
+	
+	
 	//Pruebo el min
 	@Test
 	public void testMin() {
@@ -74,13 +81,7 @@ public class RedBlackTreeTest {
 		
 	}
 	
-	//Pruebo el max
-	@Test
-	public void testMax() {
-		setUp1();
-		assertEquals(499,arbol.max());
-	}
-	
+
 	
 	
 	

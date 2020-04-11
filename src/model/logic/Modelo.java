@@ -209,6 +209,7 @@ public class Modelo {
 	
 	//Consultar los comparendos con un id en un rango específico
 	public void req3(int id_inferior, int id_superior){
+		
 		keyComparendo k_inf = new keyComparendo(id_inferior);
 		keyComparendo k_sup = new keyComparendo(id_superior);
 		
@@ -216,11 +217,23 @@ public class Modelo {
 		while(arbol.valuesInRange(k_inf, k_sup).hasNext()){
 			System.out.print(arbol.valuesInRange(k_inf, k_sup).next().toString());
 		}
-		*/
+		
 		while(arbol.keysInRange(k_inf, k_sup).hasNext()){
 			System.out.print(arbol.keysInRange(k_inf, k_sup).next().toString());
-		}
+		} */
 		
+
+		Iterable<keyComparendo> it= (Iterable<keyComparendo>) arbol.keysInRange(k_inf, k_sup);
+		
+		Iterator<keyComparendo> ite= it.iterator();
+		
+		while(ite.hasNext()) 
+		{
+			
+			keyComparendo k = (keyComparendo) ite.next();
+			
+			System.out.println(arbol.get(k).toString());
+		}
 		
 		
 	}
