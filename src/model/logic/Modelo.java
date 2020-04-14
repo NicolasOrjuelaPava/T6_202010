@@ -101,7 +101,16 @@ public class Modelo {
 
 			try {
 				FileInputStream inputStream;
+				//-----------------------------------------------------------------------------
+				//-----------------------------------------------------------------------------
+				//****ELEGIR ACA EL ARCHIVO QUE SE QUIERA UTILIZAR:****
+				//ARCHIVO_PEQUENO para el de 20 comparendos
+				//ARCHIVO_MEDIANO para el mediano
+				//ARCHIVO_GRANDE para el de 500 mil comparendos
+				//-----------------------------------------------------------------------------
 				inputStream = new FileInputStream(ARCHIVO_PEQUENO);
+				//-----------------------------------------------------------------------------
+				//-----------------------------------------------------------------------------
 				InputStreamReader inputStreamreader = new InputStreamReader(inputStream);
 				BufferedReader bufferedReader = new BufferedReader(inputStreamreader);
 
