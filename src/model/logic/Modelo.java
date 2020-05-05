@@ -11,8 +11,6 @@ import com.google.gson.Gson;
 
 import controller.Controller;
 import model.data_structures.Comparendo;
-import model.data_structures.Node;
-import model.data_structures.RedBlackTree;
 import model.data_structures.keyComparendo;
 import model.data_structures.Comparendo;
 
@@ -43,8 +41,12 @@ public class Modelo {
 		public static double tiempoInicio;
 		public static double tiempoFin;
 		Scanner sc;
+	
+		//************************************************
+		//************************************************
+		//************************************************
 		//CREAR ATRIBUTO DE LA ESTRUCTURA
-		static RedBlackTree arbol;
+	
 		
 		static int valMin;
 		static int valMax;
@@ -95,8 +97,10 @@ public class Modelo {
 			String tipo_servicio ="";
 			String localidad ="";
 			
+			
+			//************************************************
+			//************************************************
 			//INICIALIZAR LA ESTRUCTURA
-			arbol = new RedBlackTree();
 
 
 			try {
@@ -122,6 +126,9 @@ public class Modelo {
 				
 				for (int i=0; i<coleccionComparendos.features.length;i++){
 					
+					//************************************************
+					//************************************************
+					//************************************************
 					//CARGAR EN LA ESTRUCTURA
 					Comparendo comp = new Comparendo(
 							coleccionComparendos.features[i].properties.OBJECTID, 
@@ -135,7 +142,7 @@ public class Modelo {
 		        			coleccionComparendos.features[i].properties.MUNICIPIO, 
 		        			coleccionComparendos.features[i].geometry.coordinates[0], 
 		        			coleccionComparendos.features[i].geometry.coordinates[1]) ;
-					arbol.put(comp.getKey(), comp);
+				//	arbol.put(comp.getKey(), comp);
 					
 					
 	
@@ -192,58 +199,19 @@ public class Modelo {
 	// 1 carga
 	public static void req1(){
 
-			//System.out.println(arbol.height());
-			System.out.println("El tamanio es: " +arbol.size());
+		//	System.out.println("El tamanio es: " +arbol.size());
 			System.out.println("El valor MINIMO de OBJECT ID es: " + valMin);
 			System.out.println("El valor MAXIMO de OBJECT ID es: " + valMax);
 	}
 	
 	//Funciona perfecto
-	public void req2(int idBuscado){
-		keyComparendo k = new keyComparendo(idBuscado);
-		
-		try{
-		if (arbol.get(k).toString() == null){
-			System.out.println("No existe un comparendo con ese OBJECTID");
-		}else{
-			System.out.println(arbol.get(k).toString());
-			System.out.println("");
-			}
-		}catch (Exception e){
-			System.out.println("");
-			System.out.println("No existe un comparendo con ese OBJECTID");
-			System.out.println("");
-		}
+	public void req2( ){
+
 	}
 	
-	//Consultar los comparendos con un id en un rango específico
-	public void req3(int id_inferior, int id_superior){
-		
-		keyComparendo k_inf = new keyComparendo(id_inferior);
-		keyComparendo k_sup = new keyComparendo(id_superior);
-		
-		/*
-		while(arbol.valuesInRange(k_inf, k_sup).hasNext()){
-			System.out.print(arbol.valuesInRange(k_inf, k_sup).next().toString());
-		}
-		
-		while(arbol.keysInRange(k_inf, k_sup).hasNext()){
-			System.out.print(arbol.keysInRange(k_inf, k_sup).next().toString());
-		} */
-		
 
-		Iterable<keyComparendo> it= (Iterable<keyComparendo>) arbol.keysInRange(k_inf, k_sup);
-		
-		Iterator<keyComparendo> ite= it.iterator();
-		
-		while(ite.hasNext()) 
-		{
-			
-			keyComparendo k = (keyComparendo) ite.next();
-			
-			System.out.println(arbol.get(k).toString());
-		}
-		
+	public void req3(){
+
 		
 	}
 	
